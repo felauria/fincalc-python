@@ -34,6 +34,17 @@ def calcular_irrf(salario_bruto: float) -> float:
     else:
         return (salario_bruto * 0.225) - 662.77
 
+def calcular_parcela_price(
+    valor_emprestimo: float, taxa_mensal: float, meses: int
+) -> float:
+    """Calcula o valor da parcela fixa em um financiamento pela Tabela Price."""
+    i = taxa_mensal / 100
+    parcela = (
+        valor_emprestimo
+        * (i * ((1 + i) ** meses))
+        / (((1 + i) ** meses) - 1)
+    )
+    return parcela
 
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
@@ -45,3 +56,6 @@ if __name__ == "__main__":
     print(f"Juros Compostos: R$ {montante_comp:.2f}\n")
     irrf = calcular_irrf(3000.00)
     print(f"IRRF: R$ {irrf:.2f}\n")
+
+    parcela_price = calcular_parcela_price(10000.0, 1.5, 24)
+    print(f"Parcela pela Tabela Price: R$ {parcela_price:.2f}")
