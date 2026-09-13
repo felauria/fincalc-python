@@ -1,15 +1,17 @@
 # fincalc-python
-Aplicação financeira simples para testes do grupo 2
-## Cálculo de financiamento — Tabela Price
+## Cálculo de Valor Futuro com Aportes
 
-Foi implementada uma função que calcula o valor da parcela fixa de um
-financiamento utilizando a Tabela Price.
+Calcula o valor futuro acumulado de um investimento com aportes mensais
+recorrentes e uma taxa de juros mensal.
 
-A função recebe:
+### Parâmetros
+- `aporte_mensal`: valor investido mensalmente.
+- `taxa_mensal`: taxa de juros mensal em porcentagem.
+- `meses`: quantidade de meses do investimento.
 
-- o valor do empréstimo;
-- a taxa de juros mensal;
-- a quantidade de meses.
+### Exemplo
+Aporte mensal: R$ 500,00  
+Taxa mensal: 1%  
+Período: 24 meses
 
-Exemplo: um empréstimo de R$ 10.000,00, com taxa de 1,5% ao mês durante
-24 meses, resulta em uma parcela aproximada de R$ 499,24.
+O cálculo é realizado pela função `calcular_valor_futuro()`.
