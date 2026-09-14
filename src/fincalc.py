@@ -40,15 +40,21 @@ def calcular_valor_futuro(aporte_mensal: float, taxa_mensal: float, meses: int) 
     vf = aporte_mensal * (((1 + i) ** meses - 1) / i)
     return vf
 
+def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
+    """Converte uma taxa de juros anual equivalente para taxa mensal."""
+    return (((1 + (taxa_anual / 100)) ** (1/12)) - 1) * 100
+
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
     print(f"Patrimônio Estimado para Aposentadoria: R$ {patrimonio:.2f}")
     montante = calcular_juros_simples(1000.0, 5.0, 2)
-    print(f"Juros Simples: R$ {montante:.2f}")
+    print(f"Juros Simples: R$ {montante:.2f}\n")
     montante_comp = calcular_juros_compostos(1000.0, 5.0, 2)
     print(f"Juros Compostos: R$ {montante_comp:.2f}\n")
     irrf = calcular_irrf(3000.00)
     print(f"IRRF: R$ {irrf:.2f}\n")
     valor_futuro = calcular_valor_futuro(500.0, 1.0, 24)
-    print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}")
+    print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}\n")
+    taxa_mensal = converter_taxa_anual_para_mensal(12.0)
+    print(f"Taxa Mensal Equivalente: {taxa_mensal:.2f}%")
