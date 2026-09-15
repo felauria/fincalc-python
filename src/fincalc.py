@@ -40,6 +40,14 @@ def calcular_valor_futuro(aporte_mensal: float, taxa_mensal: float, meses: int) 
     vf = aporte_mensal * (((1 + i) ** meses - 1) / i)
     return vf
 
+def calcular_depreciacao_linear(
+    valor_inicial: float,
+    valor_residual: float,
+    vida_util_anos: int
+) -> float:
+    """Calcula o valor de depreciação anual de um ativo corporativo."""
+    return (valor_inicial - valor_residual) / vida_util_anos
+
 def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
     """Converte uma taxa de juros anual equivalente para taxa mensal."""
     return (((1 + (taxa_anual / 100)) ** (1/12)) - 1) * 100
@@ -58,3 +66,5 @@ if __name__ == "__main__":
     print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}\n")
     taxa_mensal = converter_taxa_anual_para_mensal(12.0)
     print(f"Taxa Mensal Equivalente: {taxa_mensal:.2f}%")
+    depreciacao = calcular_depreciacao_linear(10000.0, 1000.0, 5)
+    print(f"Depreciação Anual: R$ {depreciacao:.2f}")

@@ -1,17 +1,17 @@
-# fincalc-python
-## Cálculo de Valor Futuro com Aportes
+## Cálculo de Depreciação Linear de Ativos
 
-Calcula o valor futuro acumulado de um investimento com aportes mensais
-recorrentes e uma taxa de juros mensal.
+Calcula o valor de depreciação anual de um ativo corporativo.
 
 ### Parâmetros
-- `aporte_mensal`: valor investido mensalmente.
-- `taxa_mensal`: taxa de juros mensal em porcentagem.
-- `meses`: quantidade de meses do investimento.
+
+- `valor_inicial`: valor inicial do ativo.
+- `valor_residual`: valor residual do ativo ao final da vida útil.
+- `vida_util_anos`: quantidade de anos da vida útil do ativo.
 
 ### Exemplo
-Aporte mensal: R$ 500,00  
-Taxa mensal: 1%  
-Período: 24 meses
 
-O cálculo é realizado pela função `calcular_valor_futuro()`.
+- Valor inicial: R$ 10.000,00
+- Valor residual: R$ 1.000,00
+- Vida útil: 5 anos
+
+O cálculo é realizado pela função `calcular_depreciacao_linear()`.
