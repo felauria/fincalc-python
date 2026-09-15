@@ -66,3 +66,5 @@ if __name__ == "__main__":
     print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}\n")
     taxa_mensal = converter_taxa_anual_para_mensal(12.0)
     print(f"Taxa Mensal Equivalente: {taxa_mensal:.2f}%")
+    depreciacao = calcular_depreciacao_linear(10000.0, 1000.0, 5)
+    print(f"Depreciação Anual: R$ {depreciacao:.2f}")
