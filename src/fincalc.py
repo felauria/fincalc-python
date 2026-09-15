@@ -44,6 +44,13 @@ def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
     """Converte uma taxa de juros anual equivalente para taxa mensal."""
     return (((1 + (taxa_anual / 100)) ** (1/12)) - 1) * 100
 
+def calcular_rendimento_real(ganho_nominal: float, inflacao: float) -> float:
+    """Calcula a taxa de retorno real descontada a inflação do período."""
+    retorno_real = (
+        (1 + (ganho_nominal / 100)) / (1 + (inflacao / 100))
+    ) - 1
+    return retorno_real * 100  
+
 if __name__ == "__main__":
     print("Iniciando o sistema FinCalc...")
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
@@ -58,3 +65,5 @@ if __name__ == "__main__":
     print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}\n")
     taxa_mensal = converter_taxa_anual_para_mensal(12.0)
     print(f"Taxa Mensal Equivalente: {taxa_mensal:.2f}%")
+    rendimento_real = calcular_rendimento_real(10.0, 4.0)
+print(f"Rendimento Real Ajustado pela Inflação: {rendimento_real:.2f}%")
