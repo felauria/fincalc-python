@@ -1,4 +1,4 @@
-FinCalc - Sistema de Cálculos Financeiros
+FinCalc - Projeto de Cálculos Financeiros
 ## Cálculo de Valor Futuro com Aportes
 
 Calcula o valor futuro acumulado de um investimento com aportes mensais
