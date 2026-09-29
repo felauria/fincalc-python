@@ -1,17 +1,47 @@
-FinCalc - Projeto de Cálculos Financeiros
-## Cálculo de Valor Futuro com Aportes
+# FinCalc - Projeto de Cálculos Financeiros
 
-Calcula o valor futuro acumulado de um investimento com aportes mensais
-recorrentes e uma taxa de juros mensal.
+Sistema de cálculos financeiros desenvolvido em Python como projeto
+colaborativo da disciplina de Gestão de Configuração e DevOps.
 
-### Parâmetros
-- `aporte_mensal`: valor investido mensalmente.
-- `taxa_mensal`: taxa de juros mensal em porcentagem.
-- `meses`: quantidade de meses do investimento.
+## Funcionalidades
 
-### Exemplo
-Aporte mensal: R$ 500,00  
-Taxa mensal: 1%  
-Período: 24 meses
+O projeto reúne diferentes funções para realização de cálculos financeiros:
 
-O cálculo é realizado pela função `calcular_valor_futuro()`.
+- Cálculo de Imposto de Renda Retido na Fonte (IRRF)
+- Cálculo de financiamento pela Tabela Price
+- Cálculo de Valor Futuro de Investimentos com Aportes Periódicos
+- Cálculo de Depreciação Linear de Ativos
+- Conversão de Taxa de Juros Anual para Mensal
+- Cálculo de Lucro Líquido e Margem Operacional
+- Cálculo de Rendimento Real Ajustado pela Inflação
+
+## Tecnologias
+
+- Python
+- Git
+- GitHub
+- GitHub Codespaces
+- GitHub Actions
+
+## Estrutura
+
+As funções financeiras são implementadas no arquivo:
+
+`src/fincalc.py`
+
+O projeto também utiliza o GitHub Actions para integração contínua,
+com testes de sintaxe e análise estática do código.
+
+## Colaboração
+
+O desenvolvimento foi realizado de forma colaborativa, utilizando
+branches, commits, Pull Requests e Code Review.
+
+Cada integrante ficou responsável pela implementação de uma função
+financeira específica.
+
+## Projeto
+
+**FinCalc - Sistema de Cálculos Financeiros**
+
+Projeto desenvolvido para a disciplina de Gestão de Configuração e DevOps.
