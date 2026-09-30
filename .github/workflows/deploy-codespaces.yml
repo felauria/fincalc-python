@@ -1,0 +1,27 @@
+name: Deploy Simulado Codespaces
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-simulado-codespaces:
+    name: Deploy Simulado Codespaces
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Criar diretório de produção simulado
+        run: |
+          mkdir -p /tmp/servidor_producao_fincalc
+
+      - name: Copiar arquivos para produção simulada
+        run: |
+          cp -r . /tmp/servidor_producao_fincalc/
+
+      - name: Verificar arquivos implantados
+        run: |
+          echo "Arquivos implantados:"
+          find /tmp/servidor_producao_fincalc -maxdepth 2 -type f
+          echo "Deploy simulado concluído com sucesso!"
