@@ -1,5 +1,29 @@
 # FinCalc - Sistema de Cálculos Financeiros em Python
 
+def calcular_irrf(salario_base):
+    """Calcula o Imposto de Renda Retido na Fonte (IRRF)."""
+    if not isinstance(salario_base, (int, float)) or isinstance(
+        salario_base, bool
+    ):
+        raise TypeError("O salário base deve ser um número numérico.")
+
+    if salario_base < 0:
+        raise ValueError("O salário base não pode ser negativo.")
+
+    if salario_base <= 2259.20:
+        imposto = 0.0
+    elif salario_base <= 2826.65:
+        imposto = (salario_base * 0.075) - 169.44
+    elif salario_base <= 3751.05:
+        imposto = (salario_base * 0.15) - 381.44
+    elif salario_base <= 4664.68:
+        imposto = (salario_base * 0.225) - 662.77
+    else:
+        imposto = (salario_base * 0.275) - 896.00
+
+    return round(imposto, 2)
+
+
 def calcular_juros_simples(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros simples."""
     juros = capital * (taxa_anual / 100) * anos
