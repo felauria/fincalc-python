@@ -1,5 +1,3 @@
-# FinCalc - Sistema de Cálculos Financeiros em Python
-
 def calcular_juros_simples(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros simples."""
     juros = capital * (taxa_anual / 100) * anos
@@ -20,8 +18,55 @@ def calcular_aposentadoria(
 
 def calcular_juros_compostos(capital: float, taxa_anual: float, anos: int) -> float:
     """Calcula o montante final obtido por juros compostos."""
+    if capital < 0:
+        raise ValueError("O capital não pode ser negativo.")
+    if anos < 0:
+        raise ValueError("O prazo não pode ser negativo.")
     montante = capital * ((1 + (taxa_anual / 100)) ** anos)
     return montante
+
+
+def calcular_irrf(salario_bruto: float) -> float:
+    """Calcula a alíquota simplificada de Imposto de Renda Retido na Fonte."""
+    if salario_bruto <= 2259.20:
+        return 0.0
+    elif salario_bruto <= 2826.65:
+        return (salario_bruto * 0.075) - 169.44
+    elif salario_bruto <= 3751.05:
+        return (salario_bruto * 0.15) - 381.44
+    else:
+        return (salario_bruto * 0.225) - 662.77
+
+
+def calcular_valor_futuro(
+    aporte_mensal: float, taxa_mensal: float, meses: int
+) -> float:
+    """Calcula o valor futuro acumulado com aportes mensais recorrentes."""
+    i = taxa_mensal / 100
+    vf = aporte_mensal * (((1 + i) ** meses - 1) / i)
+    return vf
+
+
+def calcular_depreciacao_linear(
+    valor_inicial: float,
+    valor_residual: float,
+    vida_util_anos: int,
+) -> float:
+    """Calcula o valor de depreciação anual de um ativo corporativo."""
+    return (valor_inicial - valor_residual) / vida_util_anos
+
+
+def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
+    """Converte uma taxa de juros anual equivalente para taxa mensal."""
+    return (((1 + (taxa_anual / 100)) ** (1 / 12)) - 1) * 100
+
+
+def calcular_rendimento_real(ganho_nominal: float, inflacao: float) -> float:
+    """Calcula a taxa de retorno real descontada a inflação do período."""
+    retorno_real = (
+        (1 + (ganho_nominal / 100)) / (1 + (inflacao / 100))
+    ) - 1
+    return retorno_real * 100
 
 
 if __name__ == "__main__":
@@ -29,6 +74,14 @@ if __name__ == "__main__":
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
     print(f"Patrimônio Estimado para Aposentadoria: R$ {patrimonio:.2f}")
     montante = calcular_juros_simples(1000.0, 5.0, 2)
-    print(f"Juros Simples: R$ {montante:.2f}")
+    print(f"Juros Simples: R$ {montante:.2f}\n")
     montante_comp = calcular_juros_compostos(1000.0, 5.0, 2)
     print(f"Juros Compostos: R$ {montante_comp:.2f}\n")
+    irrf = calcular_irrf(3000.00)
+    print(f"IRRF: R$ {irrf:.2f}\n")
+    valor_futuro = calcular_valor_futuro(500.0, 1.0, 24)
+    print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}\n")
+    taxa_mensal = converter_taxa_anual_para_mensal(12.0)
+    print(f"Taxa Mensal Equivalente: {taxa_mensal:.2f}%")
+    depreciacao = calcular_depreciacao_linear(10000.0, 1000.0, 5)
+    print(f"Depreciação Anual: R$ {depreciacao:.2f}")
