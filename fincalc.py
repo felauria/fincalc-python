@@ -63,8 +63,14 @@ def calcular_depreciacao_linear(
     vida_util_anos: int,
 ) -> float:
     """Calcula o valor de depreciação anual de um ativo corporativo."""
-    return (valor_inicial - valor_residual) / vida_util_anos
 
+    if vida_util_anos <= 0:
+        raise ValueError("A vida útil deve ser maior que zero.")
+
+    if valor_residual > valor_inicial:
+        raise ValueError("O valor residual não pode ser maior que o inicial.")
+
+    return (valor_inicial - valor_residual) / vida_util_anos
 
 def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
     """Converte uma taxa de juros anual equivalente para taxa mensal."""
