@@ -74,6 +74,30 @@ def calcular_depreciacao_linear(
     return (valor_inicial - valor_residual) / vida_util_anos
 
 
+def calcular_parcela_price(
+    valor_emprestimo: float,
+    taxa_mensal: float,
+    meses: int,
+) -> float:
+    """Calcula a prestação mensal de um financiamento pela Tabela Price."""
+
+    if valor_emprestimo < 0:
+        raise ValueError("O valor do empréstimo não pode ser negativo.")
+
+    if meses <= 0:
+        raise ValueError("A quantidade de meses deve ser maior que zero.")
+
+    if taxa_mensal == 0:
+        return valor_emprestimo / meses
+
+    taxa = taxa_mensal / 100
+    fator = (1 + taxa) ** meses
+
+    parcela = valor_emprestimo * (taxa * fator) / (fator - 1)
+
+    return parcela
+
+
 def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
     """Converte uma taxa de juros anual equivalente para taxa mensal."""
     return (((1 + (taxa_anual / 100)) ** (1 / 12)) - 1) * 100
