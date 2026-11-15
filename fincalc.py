@@ -57,6 +57,7 @@ def calcular_valor_futuro(
 
     return vf
 
+
 def calcular_depreciacao_linear(
     valor_inicial: float,
     valor_residual: float,
