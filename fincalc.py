@@ -38,6 +38,23 @@ def calcular_irrf(salario_bruto: float) -> float:
         return (salario_bruto * 0.225) - 662.77
 
 
+def calcular_margem_liquida(
+    receita_total: float,
+    custos_totais: float,
+) -> float:
+    """Calcula a margem líquida com base na receita e nos custos."""
+
+    if receita_total <= 0:
+        raise ValueError("A receita total deve ser maior que zero.")
+
+    if custos_totais < 0:
+        raise ValueError("Os custos totais não podem ser negativos.")
+
+    margem = ((receita_total - custos_totais) / receita_total) * 100
+
+    return margem
+
+
 def calcular_valor_futuro(
     aporte_mensal: float, taxa_mensal: float, meses: int
 ) -> float:
