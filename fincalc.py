@@ -124,26 +124,97 @@ def converter_taxa_anual_para_mensal(taxa_anual: float) -> float:
 
 
 def calcular_rendimento_real(ganho_nominal: float, inflacao: float) -> float:
-    """Calcula a taxa de retorno real descontada a inflação do período."""
+    """Calcula a taxa de retorno real descontando a inflação."""
+    if ganho_nominal < -100:
+        raise ValueError("O ganho nominal não pode ser inferior a -100%.")
+
+    if inflacao <= -100:
+        raise ValueError("A inflação deve ser superior a -100%.")
+
     retorno_real = (
-        (1 + (ganho_nominal / 100)) / (1 + (inflacao / 100))
+        (1 + ganho_nominal / 100) /
+        (1 + inflacao / 100)
     ) - 1
+
     return retorno_real * 100
 
 
+def calcular_rendimento_real_ajustado(
+    capital_inicial: float,
+    taxa_nominal: float,
+    taxa_inflacao: float,
+    anos: int,
+) -> float:
+    """
+    Calcula o rendimento acumulado em reais,
+    descontando os efeitos da inflação.
+    """
+
+    if capital_inicial < 0:
+        raise ValueError("O capital inicial não pode ser negativo.")
+
+    if anos < 0:
+        raise ValueError("O prazo não pode ser negativo.")
+
+    if taxa_nominal < -100:
+        raise ValueError("O ganho nominal não pode ser inferior a -100%.")
+
+    if taxa_inflacao <= -100:
+        raise ValueError("A inflação deve ser superior a -100%.")
+
+    taxa_real = calcular_rendimento_real(
+        taxa_nominal,
+        taxa_inflacao
+    ) / 100
+
+    valor_final_real = capital_inicial * ((1 + taxa_real) ** anos)
+
+    rendimento_real = valor_final_real - capital_inicial
+
+    return rendimento_real
+
+
 if __name__ == "__main__":
-    print("Iniciando o sistema FinCalc...")
+    print("Iniciando o sistema FinCalc...\n")
+
     patrimonio = calcular_aposentadoria(10000.0, 500.0, 20, 6.0)
     print(f"Patrimônio Estimado para Aposentadoria: R$ {patrimonio:.2f}")
+
     montante = calcular_juros_simples(1000.0, 5.0, 2)
-    print(f"Juros Simples: R$ {montante:.2f}\n")
+    print(f"Juros Simples: R$ {montante:.2f}")
+
     montante_comp = calcular_juros_compostos(1000.0, 5.0, 2)
-    print(f"Juros Compostos: R$ {montante_comp:.2f}\n")
+    print(f"Juros Compostos: R$ {montante_comp:.2f}")
+
     irrf = calcular_irrf(3000.00)
-    print(f"IRRF: R$ {irrf:.2f}\n")
+    print(f"IRRF: R$ {irrf:.2f}")
+
     valor_futuro = calcular_valor_futuro(500.0, 1.0, 24)
-    print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}\n")
+    print(f"Valor Futuro com Aportes: R$ {valor_futuro:.2f}")
+
     taxa_mensal = converter_taxa_anual_para_mensal(12.0)
     print(f"Taxa Mensal Equivalente: {taxa_mensal:.2f}%")
+
     depreciacao = calcular_depreciacao_linear(10000.0, 1000.0, 5)
     print(f"Depreciação Anual: R$ {depreciacao:.2f}")
+
+    # ALUNO 8 - MATHEUS
+    print("\n--- Rendimento Real Ajustado (Aluno 8 - Matheus) ---")
+
+    capital = 1000.00
+    taxa_nominal = 10.0
+    inflacao = 4.0
+    anos = 2
+
+    resultado = calcular_rendimento_real_ajustado(
+        capital,
+        taxa_nominal,
+        inflacao,
+        anos
+    )
+
+    print(f"Capital Inicial: R$ {capital:.2f}")
+    print(f"Taxa Nominal: {taxa_nominal:.2f}%")
+    print(f"Inflação: {inflacao:.2f}%")
+    print(f"Período: {anos} anos")
+    print(f"Rendimento Real Ajustado: R$ {resultado:.2f}")
